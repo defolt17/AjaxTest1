@@ -1,4 +1,4 @@
-# ajax_test1
+# ajax-test
 
 ## Project setup
 ```

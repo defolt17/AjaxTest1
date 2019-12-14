@@ -1,17 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <user-card v-if="user" :user="user"></user-card>
+    {{user}}
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import UserCard from './components/UserCard'
 export default {
+  data(){
+    return {
+      user: null
+    }
+  },
   name: 'app',
   components: {
-    HelloWorld
+    UserCard
+  },
+  mounted(){
+    this.axios.get('https://randomuser.me/api').then((response)=>{
+      console.log('response', response.data)
+      this.user = response.data.results[0]
+    }).catch(err=>{
+      console.log('errr', err)
+    })
+
   }
 }
 </script>
